@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/portfolio/todayi/static/css/main.f05f1e07.css",
+    "main.js": "/portfolio/todayi/static/js/main.98fec0cf.js",
+    "static/js/787.04535b74.chunk.js": "/portfolio/todayi/static/js/787.04535b74.chunk.js",
+    "static/media/logo.svg": "/portfolio/todayi/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/portfolio/todayi/index.html",
+    "main.f05f1e07.css.map": "/portfolio/todayi/static/css/main.f05f1e07.css.map",
+    "main.98fec0cf.js.map": "/portfolio/todayi/static/js/main.98fec0cf.js.map",
+    "787.04535b74.chunk.js.map": "/portfolio/todayi/static/js/787.04535b74.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f05f1e07.css",
+    "static/js/main.98fec0cf.js"
+  ]
+}

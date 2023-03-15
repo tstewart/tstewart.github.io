@@ -1,0 +1,198 @@
+:root {
+  --background-color: #1A1A1A;
+  --color-primary: white;
+  --color-primary-darkened: #bfbfbf;
+  --color-secondary: #E5533A;
+  --color-secondary-hover: #EC8675;
+
+  --popover-header-bg: #444444;
+  --popover-header-color: white;
+  --popover-body-color: black;
+  --popover-bg: #616060;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--color-primary);
+}
+
+#root {
+  margin-bottom: 200px;
+}
+
+a {
+  color: var(--color-secondary);
+}
+
+a:hover {
+  color: var(--color-secondary-hover);
+}
+
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+.page, .content-page {
+  min-height: 100vh;
+}
+
+.content-page {
+  padding-top: 5rem;
+}
+
+.app {
+  text-align: center;
+}
+
+
+.section-title {
+  margin-bottom: 50px;
+}
+
+/* Navbar */
+#navbar {
+  background: none !important;
+  position: fixed;
+}
+
+#navbar .nav-link {
+  color: var(--color-secondary);
+  padding: 1rem;
+  font-family: 'Fira Code', monospace; 
+  font-size: x-large;
+}
+
+#navbar.false {
+  opacity: 1;
+  visibility: visible;
+}
+
+#navbar.hidden {
+  transition: opacity 0.5s, visibility 0.5s;
+  visibility: hidden;
+  opacity: 0;
+}
+
+#navbar .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(94, 252, 141, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+#navbar .navbar-toggler {
+  border-color: var(--color-secondary);
+} 
+
+/* Intro */
+.portrait-img {
+  border-radius: 50%;
+  max-width: 200px;
+  pointer-events: none;
+}
+
+.social-icon, .social-icon:hover {
+  color: var(--color-secondary) !important;
+  text-decoration: none;
+}
+
+
+/* Skills */
+.nav-link {
+  font-size: x-large;
+}
+
+.skill-title {
+  color: var(--color-secondary);
+  font-family: 'Fira Code', monospace; 
+}
+
+/* Skill popup */
+.skill-popover {
+  --bs-popover-bg: var(--popover-bg);
+}
+
+.skill-popover .popover-header {
+  color: var(--popover-header-color);
+  background-color: var(--popover-header-bg);
+  text-align: center;
+  font-size: large;
+}
+
+.skill-popover .popover-body {
+  background-color: var(--popover-bg);
+  color: var(--popover-body-color);
+}
+
+.skill-popover .popover-arrow {
+  border-color: black;
+}
+
+.skill-popover b {
+  text-align: center;
+}
+
+.skill-popover b, .skill-popover p {
+  margin: 1vh;
+}
+
+/**/
+
+/* Experience Tabs */
+.experience-tabs {
+  border: 1px solid;
+  border-radius: 5px;
+  border-color: var(--popover-header-bg);
+}
+
+.experience-title {
+  margin-top: 5px;
+}
+
+.experience-tab-content {
+  margin: 20px 50px;
+}
+
+.experience-tabs .nav-pills {
+  margin-top: 20px;
+}
+
+.experience-tabs .nav-pills .nav-link {
+  color: var(--color-primary);
+  font-size: medium;
+}
+
+.experience-tabs .nav-pills .nav-link.active {
+  color: var(--color-secondary);
+  background: none;
+}
+
+.experience-tab-content .title {
+  font-size: x-large;
+}
+
+.experience-tab-content .from-to,
+.experience-tab-content .key-skills {
+  color: var(--color-primary-darkened);
+}
+
+.experience-section-list > li {
+  text-align: left;
+}
+
+.experience-icon {
+  margin-right: 20px;
+}
+
+/* Portfolio */
+.portfolio-section {
+  margin-bottom: 100px;
+}
+
+.portfolio-img {
+  max-height: 400px;
+  max-width: 100vw;
+}
+
+.portfolio-description {
+  white-space: pre-wrap;
+  margin: 20px 100px;
+}

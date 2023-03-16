@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
 import { Nav, OverlayTrigger, Popover } from 'react-bootstrap'
 
 export default class SkillPill extends React.Component {

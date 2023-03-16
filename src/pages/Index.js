@@ -13,11 +13,9 @@ function Index() {
                     <h1 className="mb-4 display-2">Taylor Stewart</h1>
                     <p className="lead pb-3">Junior Software Engineer</p>
                     <Row className="mx-5 px-5 pb-4">
-                        <Col md="4" xs={4}><a href="https://twitter.com/tstewart_irl" className="social-icon">
-                            <FontAwesomeIcon icon={faTwitter} size="2x" /></a></Col>
-                        <Col md="4"  xs={4}><a href="https://github.com/tstewart" className="social-icon">
+                        <Col md={6} xs={6}><a href="https://github.com/tstewart" className="social-icon">
                             <FontAwesomeIcon icon={faGithub} size="2x" /></a></Col>
-                        <Col md="4"  xs={4}><a href="https://www.linkedin.com/in/tstewartedi/" className="social-icon">
+                        <Col md={6} xs={6}><a href="https://www.linkedin.com/in/tstewartedi/" className="social-icon">
                             <FontAwesomeIcon icon={faLinkedinIn} size="2x" /></a></Col>
                     </Row>
                 </Col>

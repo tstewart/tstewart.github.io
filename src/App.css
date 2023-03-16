@@ -57,7 +57,7 @@ a:hover {
 }
 
 #navbar .nav-link {
-  color: var(--color-secondary);
+  color: lightgray;
   padding: 1rem;
   font-family: 'Fira Code', monospace; 
   font-size: x-large;
@@ -75,7 +75,12 @@ a:hover {
 }
 
 #navbar .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(94, 252, 141, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(229, 83, 58, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+#navbar .navbar-collapse.collapse.show,
+#navbar .navbar-collapse.collapsing {
+  background-color: var(--background-color);
 }
 
 #navbar .navbar-toggler {
@@ -195,4 +200,15 @@ a:hover {
 .portfolio-description {
   white-space: pre-wrap;
   margin: 20px 100px;
+}
+
+.portfolio-title {
+  display: flex;
+  justify-content: center;
+}
+
+.portfolio-title .portfolio-link {
+  font-size: x-large;
+  padding-left: 0.5rem;
+  text-decoration: underline;
 }

@@ -51,6 +51,7 @@ function Navigation() {
                 <Nav.Link as={Link} to={"/#portfolio"}>
                   Portfolio
                 </Nav.Link>
+                
               </Nav>
             </Navbar.Collapse>
           </Container>

@@ -195,6 +195,12 @@
             "img":"todayi.png"
         },
         {
+            "title":"Today I (Web)",
+            "link":"https://tstewart.dev/portfolio/todayi",
+            "description":"A lightweight accomplishment tracker made in React. Utilises browser storage with backup/import functionality.\n\nCreated as a proof of concept in 2023.",
+            "img":"todayiweb.png"
+        },
+        {
             "title":"BirdScape",
             "link":null,
             "description":"A virtual reality demonstration of bird declines created with game development engine Unity.\nThis demonstration utilises data from Avonet regarding threats to birds, conservation efforts, and morphological data. The aim of the work was to raise public awareness of the major threats affecting birds, backed up by data, visualised in an engaging way.\n\nCreated for my masters dissertation.",

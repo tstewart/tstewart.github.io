@@ -1,13 +1,17 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLink } from '@fortawesome/free-solid-svg-icons';
 import { Carousel, Row, Col } from 'react-bootstrap'
 
 function PortfolioContent(props) {
     const portfolio = props.portfolio;
     return (
         <>
-            <h3>{portfolio.title}</h3>
-            {portfolio.link != null ? (
-            <h6><a href={portfolio.link}>(link)</a></h6>
-            ) : (<></>)}
+            <div className="portfolio-title">
+                <h3>{portfolio.title}</h3>
+                {portfolio.link != null ? (
+                <a href={portfolio.link} className="portfolio-link"><FontAwesomeIcon icon={faLink}/></a>
+                ) : (<></>)}
+            </div>
             <p className="portfolio-description">{portfolio.description}</p>
         </>
     );

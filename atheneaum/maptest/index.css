@@ -1,0 +1,20 @@
+.place-marker {
+    background: none;
+    border: transparent;
+    box-shadow: none;
+    color: white;
+    font-size: larger;
+}
+
+.place-marker::before,
+.country-place-marker::before {
+    border: transparent;
+}
+
+.country-place-marker {
+    background: none;
+    border: transparent;
+    box-shadow: none;
+    color: rgb(139, 139, 139);
+    font-size: x-large;
+}

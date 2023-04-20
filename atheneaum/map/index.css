@@ -8,6 +8,21 @@
     margin-top: 10px;
 }
 
+.capitals {
+    fill: purple;
+    stroke: purple;
+}
+
+.cities {
+    fill: blue;
+    stroke: blue;
+}
+
+.towns {
+    fill: black;
+    stroke: black;
+}
+
 .place-marker::before,
 .country-place-marker::before {
     border: transparent;

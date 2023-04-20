@@ -1,9 +1,7 @@
-var debug = false;
-
 /* global L */
 ; (function (window) {
   function init(mapid) {
-    var minZoom = 0
+    var minZoom = 2
     var maxZoom = 7
     var img = [
       2048, // original width of image
@@ -23,12 +21,20 @@ var debug = false;
     // set the view on a marker ...
     map.setView(rc.unproject([0, 0]), 4)
 
+    map.setZoom(2);
+
     // add layer control object
+    var cities = layerMarkers(window.cities, "cities", 3, map, rc, img);
+    var capitals = layerMarkers(window.capitals, "capitals", 6, map, rc, img);
+    var towns = layerMarkers(window.towns, "towns", 1, map, rc, img);
+
     L.control.layers({}, {
       'Polygon': layerPolygon(map, rc),
       'Countries': layerCountries(map, rc),
       'Bounds': layerBounds(map, rc, img),
-      'Info': layerGeo(map, rc)
+      'Capitals': capitals,
+      'Cities': cities,
+      'Towns': towns
     }).addTo(map)
 
     var imageBounds = [
@@ -37,36 +43,29 @@ var debug = false;
     ];
 
     L.imageOverlay("mapoverview.svg", imageBounds).addTo(map)
+
+    map.on('zoomend', function () {
+      var zoom = map.getZoom();
+      if(zoom < 4) {
+        map.removeLayer(towns);
+      } else {
+        map.addLayer(towns);
+      }
+
+      if(zoom <= 2) {
+        map.removeLayer(cities);
+      } else {
+        map.addLayer(cities);
+      }
+    });
   }
 
   /**
    * layer with markers
    */
-  function layerBounds(map, rc, img) {
+  function layerBounds(map, rc) {
     var layerBounds = L.layerGroup([])
     map.addLayer(layerBounds)
-
-    map.on('click', function(e) {
-      if (debug === true) {
-        let name = prompt("enter name");
-        if(name != null && name != "") {
-          console.log(e);
-          var coord = rc.project(e.latlng);
-          window.geoInfo.push({
-            'type': 'Feature',
-            'properties': {
-              'name': name
-            },
-            'geometry': {
-              'type': 'Point',
-              'coordinates': [Math.floor(coord.x), Math.floor(coord.y)]
-            }
-          });
-
-          layerGeo(map, rc);
-        }
-      }
-    })
 
     return layerBounds
   }
@@ -99,11 +98,8 @@ var debug = false;
     return layerCountries
   }
 
-  /**
-   * layer with markers
-   */
-  function layerGeo(map, rc) {
-    var layerGeo = L.geoJson(window.geoInfo, {
+  function layerMarkers(obj, name, scale, map, rc) {
+    var layerGeo = L.geoJson(obj, {
       // correctly map the geojson coordinates on the image
       coordsToLatLng: function (coords) {
         return rc.unproject(coords)
@@ -117,7 +113,8 @@ var debug = false;
       pointToLayer: function (feature, latlng) {
         label = String(feature.properties.name) // Must convert to string, .bindTooltip can't use straight 'feature.properties.attribute'
         return new L.CircleMarker(latlng, {
-          radius: 1
+          radius: scale,
+          className: name
         }).bindTooltip(label, { permanent: true, opacity: 0.7, direction: "center", className: "place-marker" }).openTooltip();
       }
     })

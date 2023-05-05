@@ -1,0 +1,20 @@
+.name, .coord, .short_description, .wa_link {
+    width: 25% !important;
+}
+
+.table {
+    width: 50% !important;
+}
+
+body {
+    margin: 2em !important;
+}
+
+#export {
+    width: 100%;
+    height: 100%;
+}
+
+#editor {
+    margin-top: 6rem;
+}

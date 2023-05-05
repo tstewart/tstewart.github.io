@@ -26,10 +26,10 @@ var debug = false;
     map.setZoom(2);
 
     // add layer control object
-    var cities = layerMarkers(window.cities, "cities", 3, map, rc, img);
-    var capitals = layerMarkers(window.capitals, "capitals", 6, map, rc, img);
-    var towns = layerMarkers(window.towns, "towns", 1, map, rc, img);
-    var poi = layerPoi(window.poi, map, rc, img);
+    var cities = layerMarkers(window.markers.cities, "cities", 3, map, rc, img);
+    var capitals = layerMarkers(window.markers.capitals, "capitals", 6, map, rc, img);
+    var towns = layerMarkers(window.markers.towns, "towns", 1, map, rc, img);
+    var poi = layerPoi(window.markers.poi, map, rc, img);
 
     L.control.layers({}, {
       'Polygon': layerPolygon(map, rc),
@@ -74,14 +74,14 @@ var debug = false;
     map.addLayer(layerBounds)
 
     map.on('click', function (event) {
+      var coord = rc.project(event.latlng)
       if (debug === true) {
-        var coord = rc.project(event.latlng)
         var marker = L.marker(rc.unproject(coord))
           .addTo(layerBounds)
         marker.bindPopup('[' + Math.floor(coord.x) + ',' + Math.floor(coord.y) + ']')
           .openPopup()
       } else {
-        console.log(debug)
+        console.log('Clicked [' + Math.floor(coord.x) + ',' + Math.floor(coord.y) + ']')
       }
     })
 
@@ -92,7 +92,7 @@ var debug = false;
    * layer using geoJson data for countries adding a circle marker
    */
   function layerCountries(map, rc) {
-    var layerCountries = L.geoJson(window.countries, {
+    var layerCountries = L.geoJson(window.markers.countries, {
       // correctly map the geojson coordinates on the image
       coordsToLatLng: function (coords) {
         return rc.unproject(coords)
@@ -162,7 +162,7 @@ var debug = false;
       var description = feature.properties.short_description || "";
 
       var content = '<b>'+feature.properties.name+'</b>'+'<p>'+description+'</p>';
-      if(feature.properties.wa_link) {
+      if(feature.properties.wa_link && feature.properties.wa_link != "") {
         content += '<a href="'+feature.properties.wa_link+'">World Anvil</a>';
       }
       popup.setContent(content);

@@ -1,4 +1,4 @@
-.place-marker {
+.place-marker, .poi-marker {
     background: none;
     border: transparent;
     box-shadow: none;
@@ -21,6 +21,11 @@
 .towns {
     fill: black;
     stroke: black;
+}
+
+.poi {
+    fill:green;
+    stroke:green;
 }
 
 .place-marker::before,

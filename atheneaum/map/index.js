@@ -1,4 +1,6 @@
 /* global L */
+var debug = false;
+
 ; (function (window) {
   function init(mapid) {
     var minZoom = 2
@@ -12,7 +14,7 @@
     var map = L.map(mapid, {
       minZoom: minZoom,
       maxZoom: maxZoom,
-      center: [0,0]
+      center: [0, 0]
     })
 
     // assign map and image dimensions
@@ -27,14 +29,16 @@
     var cities = layerMarkers(window.cities, "cities", 3, map, rc, img);
     var capitals = layerMarkers(window.capitals, "capitals", 6, map, rc, img);
     var towns = layerMarkers(window.towns, "towns", 1, map, rc, img);
+    var poi = layerPoi(window.poi, map, rc, img);
 
     L.control.layers({}, {
       'Polygon': layerPolygon(map, rc),
       'Countries': layerCountries(map, rc),
-      'Bounds': layerBounds(map, rc, img),
+      'Bounds': layerBounds(map, rc),
       'Capitals': capitals,
       'Cities': cities,
-      'Towns': towns
+      'Towns': towns,
+      "POI":poi
     }).addTo(map)
 
     var imageBounds = [
@@ -46,13 +50,15 @@
 
     map.on('zoomend', function () {
       var zoom = map.getZoom();
-      if(zoom < 4) {
+      if (zoom < 4) {
         map.removeLayer(towns);
+        map.removeLayer(poi);
       } else {
         map.addLayer(towns);
+        map.addLayer(poi);
       }
 
-      if(zoom <= 2) {
+      if (zoom <= 2) {
         map.removeLayer(cities);
       } else {
         map.addLayer(cities);
@@ -66,6 +72,18 @@
   function layerBounds(map, rc) {
     var layerBounds = L.layerGroup([])
     map.addLayer(layerBounds)
+
+    map.on('click', function (event) {
+      if (debug === true) {
+        var coord = rc.project(event.latlng)
+        var marker = L.marker(rc.unproject(coord))
+          .addTo(layerBounds)
+        marker.bindPopup('[' + Math.floor(coord.x) + ',' + Math.floor(coord.y) + ']')
+          .openPopup()
+      } else {
+        console.log(debug)
+      }
+    })
 
     return layerBounds
   }
@@ -86,7 +104,7 @@
         }
       },
       pointToLayer: function (feature, latlng) {
-        label = String(feature.properties.name) 
+        label = String(feature.properties.name)
         return L.circleMarker(latlng, {
           radius: 0,
           fillColor: 'transparent',
@@ -105,11 +123,7 @@
         return rc.unproject(coords)
       },
       // add a popup content to the marker
-      onEachFeature: function (feature, layer) {
-        if (feature.properties && feature.properties.name) {
-          layer.bindPopup(feature.properties.name)
-        }
-      },
+      onEachFeature: featurePopup,
       pointToLayer: function (feature, latlng) {
         label = String(feature.properties.name) // Must convert to string, .bindTooltip can't use straight 'feature.properties.attribute'
         return new L.CircleMarker(latlng, {
@@ -120,6 +134,40 @@
     })
     map.addLayer(layerGeo)
     return layerGeo
+  }
+
+  function layerPoi(obj, map, rc) {
+    var layerGeo = L.geoJson(obj, {
+      // correctly map the geojson coordinates on the image
+      coordsToLatLng: function (coords) {
+        return rc.unproject(coords)
+      },
+      // add a popup content to the marker
+      onEachFeature: featurePopup,
+      pointToLayer: function (feature, latlng) {
+        label = String(feature.properties.name) // Must convert to string, .bindTooltip can't use straight 'feature.properties.attribute'
+        return new L.shapeMarker(latlng, {
+          className: "poi",
+          radius: 3
+        }).bindTooltip(label, { permanent: true, opacity: 0.7, direction: "center", className: "poi-marker" }).openTooltip();
+      }
+    })
+    map.addLayer(layerGeo)
+    return layerGeo
+  }
+
+  function featurePopup(feature, layer) {
+    if (feature.properties && feature.properties.name) {
+      var popup = L.popup();
+      var description = feature.properties.short_description || "";
+
+      var content = '<b>'+feature.properties.name+'</b>'+'<p>'+description+'</p>';
+      if(feature.properties.wa_link) {
+        content += '<a href="'+feature.properties.wa_link+'">World Anvil</a>';
+      }
+      popup.setContent(content);
+      layer.bindPopup(popup);
+    }
   }
 
   /**

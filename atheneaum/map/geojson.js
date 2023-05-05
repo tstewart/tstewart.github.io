@@ -75,7 +75,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Vars"
+        "name": "Vars",
+        "wa_link":"https://www.worldanvil.com/w/heartbreak-aattoman/a/vars-settlement"
       },
       "geometry": {
         "type": "Point",
@@ -88,20 +89,23 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Oldport"
+        "name": "Aachen",
+        "wa_link":"https://www.worldanvil.com/w/heartbreak-aattoman/a/aachen-the-capital-of-draconia-settlement"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          871,
-          851
+          886,
+          479
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "name": "Glyswenn"
+        "name": "Glyswenn",
+        "short_description":"Sample description!",
+        "wa_link":"https://www.worldanvil.com/w/heartbreak-aattoman/a/glyswenn-settlement"
       },
       "geometry": {
         "type": "Point",
@@ -114,7 +118,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Capitol"
+        "name": "Capitol",
+        "wa_link":"https://www.worldanvil.com/w/heartbreak-aattoman/a/capitol-settlement"
       },
       "geometry": {
         "type": "Point",
@@ -137,6 +142,34 @@ window.towns = [
       "coordinates": [
         756,
         648
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "name": "Trövansk",
+      "wa-link":"https://www.worldanvil.com/w/heartbreak-aattoman/a/trovansk-settlement"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        783,
+        1147
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "name": "Malloye",
+      "short_description": "Coastal town. Home to Archibald Phourdnell."
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        268,
+        758
       ]
     }
   },
@@ -276,7 +309,22 @@ window.towns = [
     {
       "type": "Feature",
       "properties": {
-        "name": "Ravenport"
+        "name": "Oldport",
+        "wa_link":"https://www.worldanvil.com/w/heartbreak-aattoman/a/old-port-settlement"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          871,
+          851
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ravenport",
+        "wa_link":"https://www.worldanvil.com/w/heartbreak-aattoman/a/ravenport-settlement"
       },
       "geometry": {
         "type": "Point",
@@ -315,7 +363,8 @@ window.towns = [
     {
       "type": "Feature",
       "properties": {
-        "name": "The Iron Heart"
+        "name": "The Iron Heart",
+        "wa_link":"https://www.worldanvil.com/w/heartbreak-aattoman/a/the-iron-heart-settlement"
       },
       "geometry": {
         "type": "Point",
@@ -445,7 +494,8 @@ window.towns = [
     {
       "type": "Feature",
       "properties": {
-        "name": "Talpont"
+        "name": "Talpont",
+        "wa_link":"https://www.worldanvil.com/w/heartbreak-aattoman/a/talpont-settlement"
       },
       "geometry": {
         "type": "Point",
@@ -510,19 +560,6 @@ window.towns = [
     {
       "type": "Feature",
       "properties": {
-        "name": "The Heart of the Forest"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          928,
-          895
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "name": "Lisbonn"
       },
       "geometry": {
@@ -569,6 +606,22 @@ window.towns = [
         "coordinates": [
           563,
           1201
+        ]
+      }
+    }
+  ]
+  // places of interest
+  window.poi = [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "The Heart of the Forest"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          928,
+          895
         ]
       }
     }

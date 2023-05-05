@@ -1,0 +1,59 @@
+.row {
+    height: 100% !important;
+}
+
+.output-section {
+    margin-top: 6rem;
+}
+
+.place-marker, .landmark-marker, .poi-marker {
+    background: none;
+    border: transparent;
+    box-shadow: none;
+    color: black;
+    font-weight: 500;
+    font-size: small;
+    margin-top: 10px;
+}
+
+.poi-marker {
+    font-size: x-small;
+}
+
+.capitals {
+    fill: purple;
+    stroke: purple;
+}
+
+.cities {
+    fill: blue;
+    stroke: blue;
+}
+
+.towns {
+    fill: black;
+    stroke: black;
+}
+
+.landmarks {
+    fill:green;
+    stroke:green;
+}
+
+.poi {
+    fill:grey;
+    stroke:grey;
+}
+
+.place-marker::before,
+.country-place-marker::before {
+    border: transparent;
+}
+
+.country-place-marker {
+    background: none;
+    border: transparent;
+    box-shadow: none;
+    color: rgb(139, 139, 139);
+    font-size: large;
+}

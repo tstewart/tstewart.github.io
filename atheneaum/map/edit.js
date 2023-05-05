@@ -2,6 +2,8 @@ populateTable("countries", window.markers.countries);
 populateTable("capitals", window.markers.capitals);
 populateTable("cities", window.markers.cities);
 populateTable("towns", window.markers.towns);
+populateTable("landmarks", window.markers.landmarks);
+populateTable("poi", window.markers.poi);
 
 function populateTable(id, obj) {
     var table = $("#"+id+" tbody")
@@ -45,6 +47,8 @@ $('#editorForm').submit(function (e) {
           else if(type === "Capital") window.markers.capitals.push(newPoint);
           else if(type === "City") window.markers.cities.push(newPoint);
           else if(type === "Town") window.markers.towns.push(newPoint);
+          else if(type === "Landmark") window.markers.landmarks.push(newPoint);
+          else if(type === "POI") window.markers.poi.push(newPoint);
     }
     e.preventDefault();
     return false;

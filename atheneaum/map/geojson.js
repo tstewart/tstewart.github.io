@@ -623,7 +623,7 @@
         }
       }
     ],
-    poi: [
+    landmarks: [
       {
         "type": "Feature",
         "properties": {
@@ -634,6 +634,21 @@
           "coordinates": [
             928,
             895
+          ]
+        }
+      }
+    ],
+    poi: [
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "The Oil Exchange"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            272,
+            886
           ]
         }
       }

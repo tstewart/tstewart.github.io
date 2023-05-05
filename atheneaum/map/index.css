@@ -1,4 +1,4 @@
-.place-marker, .poi-marker {
+.place-marker, .landmark-marker, .poi-marker {
     background: none;
     border: transparent;
     box-shadow: none;
@@ -6,6 +6,10 @@
     font-weight: 500;
     font-size: small;
     margin-top: 10px;
+}
+
+.poi-marker {
+    font-size: x-small;
 }
 
 .capitals {
@@ -23,9 +27,14 @@
     stroke: black;
 }
 
-.poi {
+.landmarks {
     fill:green;
     stroke:green;
+}
+
+.poi {
+    fill:grey;
+    stroke:grey;
 }
 
 .place-marker::before,

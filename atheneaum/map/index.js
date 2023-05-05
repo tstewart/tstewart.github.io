@@ -28,8 +28,9 @@ var debug = false;
     // add layer control object
     var cities = layerMarkers(window.markers.cities, "cities", 3, map, rc, img);
     var capitals = layerMarkers(window.markers.capitals, "capitals", 6, map, rc, img);
-    var towns = layerMarkers(window.markers.towns, "towns", 1, map, rc, img);
-    var poi = layerPoi(window.markers.poi, map, rc, img);
+    var towns = layerMarkers(window.markers.towns, "towns", 2, map, rc, img);
+    var landmarks = layerLandmarks(window.markers.landmarks, map, rc, img);
+    var poi = layerPoi(window.markers.poi, map, rc);
 
     L.control.layers({}, {
       'Polygon': layerPolygon(map, rc),
@@ -38,7 +39,8 @@ var debug = false;
       'Capitals': capitals,
       'Cities': cities,
       'Towns': towns,
-      "POI":poi
+      "Landmarks": landmarks,
+      "Points of Interest": poi
     }).addTo(map)
 
     var imageBounds = [
@@ -50,12 +52,19 @@ var debug = false;
 
     map.on('zoomend', function () {
       var zoom = map.getZoom();
+
+      if(zoom < 7) {
+       map.removeLayer(poi); 
+      } else {
+        map.addLayer(poi);
+      }
+
       if (zoom < 4) {
         map.removeLayer(towns);
-        map.removeLayer(poi);
+        map.removeLayer(landmarks);
       } else {
         map.addLayer(towns);
-        map.addLayer(poi);
+        map.addLayer(landmarks);
       }
 
       if (zoom <= 2) {
@@ -136,6 +145,26 @@ var debug = false;
     return layerGeo
   }
 
+  function layerLandmarks(obj, map, rc) {
+    var layerGeo = L.geoJson(obj, {
+      // correctly map the geojson coordinates on the image
+      coordsToLatLng: function (coords) {
+        return rc.unproject(coords)
+      },
+      // add a popup content to the marker
+      onEachFeature: featurePopup,
+      pointToLayer: function (feature, latlng) {
+        label = String(feature.properties.name) // Must convert to string, .bindTooltip can't use straight 'feature.properties.attribute'
+        return new L.shapeMarker(latlng, {
+          className: "landmarks",
+          radius: 3
+        }).bindTooltip(label, { permanent: true, opacity: 0.7, direction: "center", className: "landmark-marker" }).openTooltip();
+      }
+    })
+    map.addLayer(layerGeo)
+    return layerGeo
+  }
+
   function layerPoi(obj, map, rc) {
     var layerGeo = L.geoJson(obj, {
       // correctly map the geojson coordinates on the image
@@ -148,7 +177,8 @@ var debug = false;
         label = String(feature.properties.name) // Must convert to string, .bindTooltip can't use straight 'feature.properties.attribute'
         return new L.shapeMarker(latlng, {
           className: "poi",
-          radius: 3
+          shape: "diamond",
+          radius: 1
         }).bindTooltip(label, { permanent: true, opacity: 0.7, direction: "center", className: "poi-marker" }).openTooltip();
       }
     })
@@ -161,9 +191,9 @@ var debug = false;
       var popup = L.popup();
       var description = feature.properties.short_description || "";
 
-      var content = '<b>'+feature.properties.name+'</b>'+'<p>'+description+'</p>';
-      if(feature.properties.wa_link && feature.properties.wa_link != "") {
-        content += '<a href="'+feature.properties.wa_link+'">World Anvil</a>';
+      var content = '<b>' + feature.properties.name + '</b>' + '<p>' + description + '</p>';
+      if (feature.properties.wa_link && feature.properties.wa_link != "") {
+        content += '<a href="' + feature.properties.wa_link + '">World Anvil</a>';
       }
       popup.setContent(content);
       layer.bindPopup(popup);

@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/portfolio/todayi/static/css/main.a466166a.css",
+    "main.js": "/portfolio/todayi/static/js/main.b0d9573e.js",
+    "static/js/787.04535b74.chunk.js": "/portfolio/todayi/static/js/787.04535b74.chunk.js",
+    "index.html": "/portfolio/todayi/index.html",
+    "main.a466166a.css.map": "/portfolio/todayi/static/css/main.a466166a.css.map",
+    "main.b0d9573e.js.map": "/portfolio/todayi/static/js/main.b0d9573e.js.map",
+    "787.04535b74.chunk.js.map": "/portfolio/todayi/static/js/787.04535b74.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a466166a.css",
+    "static/js/main.b0d9573e.js"
+  ]
+}
